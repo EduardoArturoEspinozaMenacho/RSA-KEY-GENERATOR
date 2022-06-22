@@ -119,14 +119,14 @@ int RSA_KEY_GENERATOR(int k) {
   int n = p * q;
   cout << n << endl;
   int phn = PHI(n);
-  cout << phn << endl;
   int e = 2 + rand() % (n - 3);
-  while (ext_euclides(e, n) != 1) {
+  while (ext_euclides(e, phn) != 1) {
     int e = 2 + rand() % (n - 3);
   }
   cout << e << endl;
   double d = pow(e, -1);
-  return n, e, d;
+  cout<<d;
+  return 0;
 }
 int main() {
   srand(time(NULL));
