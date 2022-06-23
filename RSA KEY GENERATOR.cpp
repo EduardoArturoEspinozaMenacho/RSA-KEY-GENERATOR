@@ -75,6 +75,20 @@ int Confirmacion(int n) {
   }
   return n;
 }
+int euclides(int a, int b){
+int q;
+int r=1;
+int eu;
+while(r!=0){
+  q=a/b;
+  r=modulo(a,b);
+  a=b;
+  eu=b;
+  b=r;
+  cout<<q<<" "<<r<<endl;
+}
+  return eu;
+  } 
 int ext_euclides(int a, int b) {
   int r = 1;
   int q;
@@ -86,7 +100,7 @@ int ext_euclides(int a, int b) {
     auxx = x1;
     auxy = y1;
     q = auxa / auxb;
-    r = auxa % auxb;
+    r = modulo(auxa,auxb);
     x1 = x0 - (q * x1);
     y1 = y0 - (q * y1);
     x0 = auxx;
@@ -94,12 +108,12 @@ int ext_euclides(int a, int b) {
     auxa = auxb;
     auxb = r;
   }
-  return auxa;
-}
+return x0;}
+
 int PHI(int n) {
   int r = 0;
   for (int i = 1; i < n; i++) {
-    int d = ext_euclides(i, n);
+    int d =euclides(i, n);
     if (d == 1) {
       r = r + 1;
     }
@@ -124,7 +138,7 @@ int RSA_KEY_GENERATOR(int k) {
     int e = 2 + rand() % (n - 3);
   }
   cout << e << endl;
-  double d = pow(e, -1);
+  double d =ext_euclides(e, phn);
   cout<<d;
   return 0;
 }
