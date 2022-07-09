@@ -1,13 +1,3 @@
-#include <iostream>
-#include <math.h>
-#include <stdlib.h>
-#include <time.h>
-using namespace std;
-int modulo(int a, int b) {
-  int q = a / b;
-  int r;
-  if (a < 0) {
-    q = q - 1;
   }
   return r = a - (q * b);
 }
@@ -109,17 +99,6 @@ int ext_euclides(int a, int b) {
     auxb = r;
   }
 return x0;}
-
-int PHI(int n) {
-  int r = 0;
-  for (int i = 1; i < n; i++) {
-    int d =euclides(i, n);
-    if (d == 1) {
-      r = r + 1;
-    }
-  }
-  return r;
-}
 int RSA_KEY_GENERATOR(int k) {
   int k_2 = k / 2;
   int p = RANDOMGEN_PRIMOS(k_2);
@@ -132,7 +111,7 @@ int RSA_KEY_GENERATOR(int k) {
   }
   int n = p * q;
   cout << n << endl;
-  int phn = PHI(n);
+  int phn =(p-1)*(q-1);
   int e = 2 + rand() % (n - 3);
   while (ext_euclides(e, phn) != 1) {
     int e = 2 + rand() % (n - 3);
