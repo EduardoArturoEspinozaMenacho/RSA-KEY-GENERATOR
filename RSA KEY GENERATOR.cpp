@@ -1,3 +1,13 @@
+#include <iostream>
+#include <math.h>
+#include <stdlib.h>
+#include <time.h>
+using namespace std;
+int modulo(int a, int b) {
+  int q = a / b;
+  int r;
+  if (a < 0) {
+    q = q - 1;
   }
   return r = a - (q * b);
 }
@@ -5,13 +15,13 @@ int expmod(int a, int x, int n) {
   int t;
   if (x == 0) {
     return 1;
-  } else if (modulo(x, 2) == 0) {
+  } else if (modulo(x,2)==0) {
     t = expmod(a, x / 2, n);
-    return modulo(pow(t, 2), n);
+    return modulo(pow(t, 2),n);
   } else {
     t = expmod(a, x - 1, n);
-    a = modulo(a, n);
-    return modulo((t * a), n);
+    a =a%n;
+    return (t * a)%n;
   }
 }
 bool ES_COMPUESTO(int a, int n, int t, int u) {
@@ -110,18 +120,17 @@ int RSA_KEY_GENERATOR(int k) {
     q = Confirmacion(q);
   }
   int n = p * q;
-  cout << n << endl;
   int phn =(p-1)*(q-1);
   int e = 2 + rand() % (n - 3);
   while (ext_euclides(e, phn) != 1) {
-    int e = 2 + rand() % (n - 3);
+     e = 2 + rand() % (n - 3);
   }
-  cout << e << endl;
-  double d =ext_euclides(e, phn);
-  cout<<d;
+  
+  long d =ext_euclides(e, phn);
+  cout <<"e="<< e <<" d="<<d<<" n="<<n<<endl;
+  long li[3]={e,d,n};
   return 0;
 }
 int main() {
   srand(time(NULL));
   cout << RSA_KEY_GENERATOR(16);
-}
